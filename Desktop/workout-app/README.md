@@ -60,7 +60,3 @@ A modern fitness web application to help you build healthy habits, track workout
 ## License
 
 MIT
-
----
-
-Feel free to customize this README for your submission or add screenshots and more details!
