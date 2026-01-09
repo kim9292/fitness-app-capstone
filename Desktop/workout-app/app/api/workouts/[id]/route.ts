@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Workout from "@/models/Workout";
 import { verifyToken } from "@/utils/auth";
@@ -13,7 +13,7 @@ function getUserIdFromHeader(req: Request): string | null {
 }
 
 // GET /api/workouts/:id - fetch one workout (must belong to user)
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const userId = getUserIdFromHeader(req);
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -37,7 +37,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 }
 
 // PATCH /api/workouts/:id - update allowed fields
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const userId = getUserIdFromHeader(req);
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -84,7 +84,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 // DELETE /api/workouts/:id - delete a workout (owner only)
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const userId = getUserIdFromHeader(req);
     if (!userId) {

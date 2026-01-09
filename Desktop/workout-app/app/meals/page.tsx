@@ -48,7 +48,6 @@ const FOOD_DATABASE: { [key: string]: { calories: number; protein: number; carbs
   "broccoli": { calories: 34, protein: 2.8, carbs: 7, fat: 0.4, fiber: 2.4, serving: "100g" },
   "spinach": { calories: 23, protein: 2.9, carbs: 3.6, fat: 0.4, fiber: 2.2, serving: "100g" },
   "carrots": { calories: 41, protein: 0.9, carbs: 10, fat: 0.2, fiber: 2.8, serving: "100g" },
-  "broccoli": { calories: 34, protein: 2.8, carbs: 7, fat: 0.4, fiber: 2.4, serving: "100g" },
   "tomato": { calories: 18, protein: 0.9, carbs: 3.9, fat: 0.2, fiber: 1.2, serving: "100g" },
   "bell pepper": { calories: 31, protein: 1, carbs: 6, fat: 0.3, fiber: 2, serving: "100g" },
   "lettuce": { calories: 15, protein: 1.2, carbs: 2.9, fat: 0.2, fiber: 1.3, serving: "100g" },
@@ -382,12 +381,6 @@ export default function MealsPage() {
           )}
         </div>
 
-        {/* Back to Dashboard */}
-        <div className="mt-6 text-center">
-          <Link href="/me" className="text-white hover:text-green-200">
-            ← Back to Dashboard
-          </Link>
-        </div>
         </>
         )}
       </main>

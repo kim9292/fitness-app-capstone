@@ -310,12 +310,6 @@ export default function HabitsPage() {
               <h1 className="text-4xl font-bold mb-2">✨ Daily Habits Tracker</h1>
               <p className="text-purple-100">Build better habits, one day at a time</p>
             </div>
-            <Link
-              href="/me"
-              className="bg-white text-purple-600 px-6 py-3 rounded-xl font-medium hover:bg-purple-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              ← Back to Dashboard
-            </Link>
           </div>
           
           {/* Quick Stats Banner */}

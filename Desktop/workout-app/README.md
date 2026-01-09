@@ -46,8 +46,15 @@ A modern fitness web application to help you build healthy habits, track workout
 
 ## Deployment
 
-- Easily deploy to [Vercel](https://vercel.com/) or your preferred platform
-- Make sure to set all environment variables in your deployment settings
+This app can be deployed on [Render](https://render.com/) or any equivalent platform (e.g., Vercel).
+
+**Render Deployment Steps:**
+1. Create a new Web Service on Render and connect your GitHub repository.
+2. Set the build command to `npm run build` and the start command to `npm start`.
+3. Add all required environment variables (see `.env.example` or `.env.local`).
+4. After deployment, your app will be live at your Render URL (e.g., `https://workout-app.onrender.com`).
+
+**Note:** Update this README with your actual Render URL after deployment.
 
 ## Tech Stack
 
@@ -57,6 +64,38 @@ A modern fitness web application to help you build healthy habits, track workout
 - Tailwind CSS
 - Hugging Face Inference API (AI assistant)
 
+## External APIs & Data
+
+This app uses the following external APIs:
+
+- **Hugging Face Inference API**: Powers the AI chat assistant for fitness and app questions. See https://huggingface.co/inference-api for details.
+- **MongoDB Atlas**: Cloud database for storing user, workout, habit, and meal data.
+
+If you use additional APIs or data sources, please document them here.
+
 ## License
 
 MIT
+
+## Testing
+
+### Automated Tests
+
+This project includes automated tests using [Jest](https://jestjs.io/). To run all tests:
+
+```bash
+npm test
+```
+
+### Manual Feature Verification
+
+Please verify the following features are implemented and working:
+
+- Register a new user and log in
+- Add, edit, and delete workouts
+- Use the AI chat assistant for fitness questions
+- Track and update daily habits
+- Plan and log meals
+- View your progress dashboard
+
+All features listed in the project proposal should be present and functional. If you encounter any issues, please document them here or in your proposal.

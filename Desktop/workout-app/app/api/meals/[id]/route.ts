@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { verifyToken } from "@/utils/auth";
 import mongoose from "mongoose";
@@ -25,22 +25,19 @@ const MealPlan = mongoose.models.MealPlan || mongoose.model("MealPlan", mealPlan
 
 // DELETE /api/meals/[id] - delete a meal plan
 export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: { id: string } }
 ) {
   try {
-    const userId = getUserIdFromHeader(req);
+    const userId = getUserIdFromHeader(request);
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const { id } = params;
-    
+    const { id } = context.params;
     await connectDB();
     const mealPlan = await MealPlan.findOne({ _id: id, userId });
-    
     if (!mealPlan) {
       return NextResponse.json({ error: "Meal plan not found" }, { status: 404 });
     }
-
     await MealPlan.deleteOne({ _id: id });
     return NextResponse.json({ message: "Deleted" }, { status: 200 });
   } catch (err) {
