@@ -13,14 +13,14 @@ function getUserIdFromHeader(req: Request): string | null {
 }
 
 // GET /api/workouts/:id - fetch one workout (must belong to user)
-export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
     const userId = getUserIdFromHeader(req);
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     await connectDB();
 
-    const { id } = await params;
+    const { id } = params;
     const workout = await Workout.findById(id).lean();
     if (!workout) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -37,12 +37,12 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
 }
 
 // PATCH /api/workouts/:id - update allowed fields
-export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
     const userId = getUserIdFromHeader(req);
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const { id } = await params;
+    const { id } = params;
     const body = await req.json();
 
     // only allow these fields to be updated
@@ -84,7 +84,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 }
 
 // DELETE /api/workouts/:id - delete a workout (owner only)
-export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
     const userId = getUserIdFromHeader(req);
     if (!userId) {
@@ -92,7 +92,7 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id } = await params;
+    const { id } = params;
     await connectDB();
 
     console.log(`DELETE request for workout ID: ${id} by user: ${userId}`);
